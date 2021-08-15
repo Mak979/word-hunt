@@ -1,10 +1,15 @@
 import React from 'react'
+import categories from '../../constants'
 
 const DropDown = ({className, name}) => {
     return (
         
         <select name={name} className={className}>
-            <option value="0">Select</option>
+            {categories.map(category => {
+                return(
+                    <option label={category.value}>{category.value}</option>
+                )
+            })}
         </select>
         
     )
