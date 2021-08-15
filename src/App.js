@@ -34,8 +34,6 @@ function App() {
   }
   
   const getData = debounce(handleChange)
-  console.log('Search Text - ', inputValue)
-  console.log('result', result)
 
   return (
     <div className="w-full min-h-screen h-auto bg-indigo-900 font-sans text-gray-300">
@@ -49,16 +47,21 @@ function App() {
               />
             </div>
             <div className="flex flex-wrap justify-between w-full mb-2">
-              <div className="mt-10 text-xl md:text-3xl font-bold text-white w-full md:w-3/5">
-                <InputBox placeholder="Search any Word" className="border-b-2 border-white bg-transparent tracking-widest p-5 outline-none w-full" onChange={getData} />
+              <div className="mt-2 md:mt-10 text-xl md:text-3xl font-bold text-white w-full">
+                <InputBox 
+                  placeholder="Search any Word" 
+                  className="border-b-2 border-white bg-transparent tracking-widest p-2 md:p-5 pr-10 md:pr-14 outline-none w-full" 
+                  onChange={getData}
+                  onClick={() => setInputValue('')}
+                />
               </div>
-              <div className="mt-4 md:mt-14 text-xl md:text-3xl font-bold text-gray-300 w-full md:w-2/5 md:pl-12">
+              {/* <div className="mt-4 md:mt-14 text-xl md:text-3xl font-bold text-gray-300 w-full md:w-2/5 md:pl-12">
                 <DropDown name="languages" className="p-3 border-b-2 border-white outline-none bg-transparent w-full" />
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
-        <div className="container mx-auto p-5 mt-64">
+        <div className="container mx-auto p-5 mt-40 md:mt-64">
           <MeaningBox result={ inputValue === '' ? [] :result } />
         </div>
     </div>

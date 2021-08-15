@@ -7,7 +7,7 @@ const DropDown = ({className, name}) => {
         <select name={name} className={className}>
             {categories.map(category => {
                 return(
-                    <option label={category.value}>{category.value}</option>
+                    <option className="bg-blue-900" label={category.value}>{category.value}</option>
                 )
             })}
         </select>
