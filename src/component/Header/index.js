@@ -7,7 +7,7 @@ const Header = ({word, phonetic, src}) => {
     }
     return (
         <>
-            <div className="text-5xl md:text-8xl text-center text-gray-300 tracking-wider uppercase mb-4 md:mb-8">
+            <div className="text-4xl md:text-8xl text-center text-gray-300 tracking-wider uppercase mb-4 md:mb-8">
                 <h1>{word}</h1>
             </div>
             { phonetic && 

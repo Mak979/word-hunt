@@ -3,18 +3,20 @@ import React from 'react'
 const MeaningBox = ({ result }) => {
     return (
         <>
-                {result.length > 0 && 
-                    <div className="mt-8 md:mt-16">
-                        {result[0].meanings.map((item, index) => (
-                            <div key={index} className="w-full p-8 bg-white border-b-4 rounded-md text-blue-800 my-4 leading-relaxed">
-                                <p><span className="itallic text-gray-500 text-base">{`(${item.partOfSpeech}) - `}</span> &nbsp; <span className="text-lg tracking-wide">{item.definitions[0].definition}</span></p>
-                                <span>Example - </span><span>{item.definitions[0].example}</span>
-                                <br></br>
-                                <h4>Synonym(s) - {'synonyms'} </h4>
-                                <h4>Antonym(s) - {'antonyms'} </h4>
-                            </div>
-                    ))}    
-                </div>   
+                { 
+                    result.map((item, index) => 
+                        <div key={index} className="mt-8 md:mt-12">
+                            {result[index]?.meanings.map((mean, key) => (
+                                mean.definitions.map((item, index) => (
+                                <div key={index} className="w-full md:w-4/5 md:mx-auto shadow-xl p-8 bg-white rounded-md text-indigo-700 my-4 leading-relaxed">
+                                    <div className="mb-2 text-lg"><span className="itallic text-gray-600 font-semibold text-lg">{`Definition(${mean.partOfSpeech ? mean.partOfSpeech : ''}) - `}</span> &nbsp;<span className="text-lg tracking-wide">{item.definition}</span></div>
+                                    {item.example && <div className="mb-2"><span className="text-lg text-gray-600 font-semibold">Example - </span><span>{item.example}</span></div>}
+                                    { item.synonyms.length > 0 && <div className="mb-2"><span className="text-lg text-gray-600 font-semibold">Synonym(s) - </span><span>{ item.synonyms.splice(0, 5).join(', ')}</span> </div> }
+                                    { item.antonyms.length > 0 && <div className="mb-2"><span className="text-lg text-gray-600 font-semibold">Antonym(s) - </span><span>{ item.antonyms.join(', ')} </span></div> }
+                                </div>
+                            ))))} 
+                        </div> 
+                    )  
             }
         </>
     )

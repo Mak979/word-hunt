@@ -1,27 +1,34 @@
 import axios from 'axios';
-import { useState, useEffect, useCallback } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
-import DropDown from './component/DropDown';
 import Header from './component/Header';
 import InputBox from './component/InputBox';
 import MeaningBox from './component/MeaningBox';
 
 function App() {
   const [inputValue, setInputValue] = useState('')
-  const [lang, setLang] = useState('en')
   const [result, setResult] = useState([])
+  const [isInvalid, setIsInvalid] = useState(false)
 
   const handleChange = (event) => {
     
     setInputValue(event.target.value)
     const { value } = event.target
-    axios.get(`https://api.dictionaryapi.dev/api/v2/entries/${lang}/${value}`).then(res => setResult(res.data))
-      .catch (error => console.log(error))
+    axios.get(`https://api.dictionaryapi.dev/api/v2/entries/en/${value}`).then(res => setResult(res.data))
+    .catch(error => {
+      console.log('Error: ', error);
+      setIsInvalid(true)
+      })
+  }
 
+  useEffect(() => {
     if(inputValue === '') {
       setResult([])
+      setIsInvalid(false) 
     }
-  }
+  }, [inputValue])
+
+  
 
   const debounce = (fn) => {
     let timer
@@ -41,28 +48,28 @@ function App() {
           <div className="container mx-auto p-5 shadow-xl md:shadow-none">
             <div>
               <Header 
-                word={ inputValue === '' ? 'word hunt' : inputValue } 
+                word={ inputValue === '' ? 'word quest' : inputValue } 
                 phonetic={ inputValue === '' ? '' : result[0]?.phonetic } 
                 src={result[0]?.phonetics[0].audio} 
               />
             </div>
-            <div className="flex flex-wrap justify-between w-full mb-2">
+            <div className="flex flex-wrap justify-between w-full mb-2 md:w-4/5 md:mx-auto">
               <div className="mt-2 md:mt-10 text-xl md:text-3xl font-bold text-white w-full">
                 <InputBox 
                   placeholder="Search any Word" 
-                  className="border-b-2 border-white bg-transparent tracking-widest p-2 md:p-5 pr-10 md:pr-14 outline-none w-full" 
+                  className="border-2 border-gray-200 bg-gray-200 text-indigo-700 rounded-lg tracking-widest p-2 md:p-5 pr-12 md:pr-16 outline-none w-full" 
                   onChange={getData}
                   onClick={() => setInputValue('')}
                 />
               </div>
-              {/* <div className="mt-4 md:mt-14 text-xl md:text-3xl font-bold text-gray-300 w-full md:w-2/5 md:pl-12">
-                <DropDown name="languages" className="p-3 border-b-2 border-white outline-none bg-transparent w-full" />
-              </div> */}
             </div>
           </div>
         </div>
-        <div className="container mx-auto p-5 mt-40 md:mt-64">
-          <MeaningBox result={ inputValue === '' ? [] :result } />
+        <div className="container mx-auto p-5 mt-40 md:mt-72">
+          { result.length ? <MeaningBox result={ inputValue === '' ? [] : result } /> 
+          : <div className="mt-20 md:mt-28 w-full text-center text-3xl text-gray-500 md:text-5xl p-4"> 
+             {isInvalid ? "Sorry pal, we couldn't find definitions for the word you were looking for." : 'Search the Word and see the magic happen!'} 
+          </div>}
         </div>
     </div>
   );
