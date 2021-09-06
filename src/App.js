@@ -17,6 +17,7 @@ function App() {
     axios.get(`https://api.dictionaryapi.dev/api/v2/entries/en/${value}`).then(res => setResult(res.data))
     .catch(error => {
       console.log('Error: ', error);
+      setResult([])
       setIsInvalid(true)
       })
   }
