@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import './App.css';
+import MobileFooter from './component/Footer-Mobile';
 import Header from './component/Header';
 import InputBox from './component/InputBox';
 import MeaningBox from './component/MeaningBox';
@@ -46,8 +47,8 @@ function App() {
   return (
     <div className="w-full min-h-screen h-auto bg-indigo-900 font-sans text-gray-300">
       <div className="fixed w-full top-0 bg-indigo-900">
-          <div className="container mx-auto p-5 shadow-xl md:shadow-none">
-            <div>
+          <div className="container mx-auto p-5 shadow-2xl md:shadow-none">
+            <div className="mb-4">
               <Header 
                 word={ inputValue === '' ? 'word quest' : inputValue } 
                 phonetic={ inputValue === '' ? '' : result[0]?.phonetic } 
@@ -72,6 +73,7 @@ function App() {
              {isInvalid ? "Sorry pal, we couldn't find definitions for the word you were looking for." : 'Search the Word and see the magic happen!'} 
           </div>}
         </div>
+        <MobileFooter />
     </div>
   );
 }
