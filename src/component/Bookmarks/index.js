@@ -2,7 +2,10 @@ import React from 'react'
 
 const Bookmarks = ({ show, close }) => {
     let str = localStorage.getItem('Bookmarks')
-    let bookmarks = str !== '' && str.split(',')
+    let bookmarks
+    if(str) {
+        bookmarks = str.split(',')
+    }
     return (
         <div className={`${show ? 'block' : 'hidden'} md:hidden fixed top-0 container min-h-screen h-auto z-20 bg-gray-100 container mx-auto p-5`}>
             <div className="flex w-full justify-between mb-8">
@@ -12,7 +15,7 @@ const Bookmarks = ({ show, close }) => {
                 </div>
             </div>
 
-            {bookmarks.length ? <div className="w-full flex flex-wrap">
+            {bookmarks?.length ? <div className="w-full flex flex-wrap">
                 {
                     bookmarks.map((item, index) => {
                         return (
