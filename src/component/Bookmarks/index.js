@@ -7,7 +7,7 @@ const Bookmarks = ({ show, close }) => {
         str = localStorage.getItem('Bookmarks');
     }  
     if(str) {
-        bookmarks = str.split(',')
+        bookmarks = str.split(',');
     }
     return (
         <div className={`${show ? 'block' : 'hidden'} md:hidden fixed top-0 container min-h-screen h-auto z-20 bg-gray-100 container mx-auto p-5`}>

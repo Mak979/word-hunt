@@ -10,7 +10,7 @@ const Header = ({word, phonetic, src}) => {
     if(str) {
         localBookmark = str.split(',');
     }
-    bookmarks.push(localStorage.getItem('Bookmarks'))
+    bookmarks.push(localStorage.getItem('Bookmarks'));
     const [showAudio, setShowAudio] = useState(false)
     const [bookmarked, setBookmarked] = useState(false)
     const handleAudio = () => {
@@ -18,11 +18,11 @@ const Header = ({word, phonetic, src}) => {
     }
     const handleBookmarkClick = () => {
         if(localBookmark && localBookmark.includes(word)) {
-            let index = localBookmark.indexOf(word)
-            localBookmark.splice(index, 1)            
+            let index = localBookmark.indexOf(word);
+            localBookmark && localBookmark.splice(index, 1);          
             localStorage.setItem('Bookmarks', localBookmark)
         } else {
-            bookmarks.push(word)
+            bookmarks.push(word);
             localStorage.setItem('Bookmarks', bookmarks)
         }
         
