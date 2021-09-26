@@ -1,8 +1,11 @@
 import React from 'react'
 
 const Bookmarks = ({ show, close }) => {
-    let str = localStorage.getItem('Bookmarks')
-    let bookmarks
+    let str;
+    let bookmarks;
+    if(localStorage.getItem('Bookmarks')) {
+        str = localStorage.getItem('Bookmarks');
+    }  
     if(str) {
         bookmarks = str.split(',')
     }
@@ -15,7 +18,7 @@ const Bookmarks = ({ show, close }) => {
                 </div>
             </div>
 
-            {bookmarks?.length ? <div className="w-full flex flex-wrap">
+            {bookmarks && bookmarks.length ? <div className="w-full flex flex-wrap">
                 {
                     bookmarks.map((item, index) => {
                         return (

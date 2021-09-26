@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 
 const Header = ({word, phonetic, src}) => {
-    let bookmarks = []
-    let str = localStorage.getItem('Bookmarks')
-    let localBookmark
-    // let localBookmark = str.split(',')
+    let bookmarks = [];
+    let str;
+    let localBookmark;
+    if(localStorage.getItem('Bookmarks')) {
+        str = localStorage.getItem('Bookmarks');
+    }   
     if(str) {
-        localBookmark = str.split(',')
+        localBookmark = str.split(',');
     }
     bookmarks.push(localStorage.getItem('Bookmarks'))
     const [showAudio, setShowAudio] = useState(false)
@@ -15,7 +17,7 @@ const Header = ({word, phonetic, src}) => {
         showAudio ? setShowAudio(false) : setShowAudio(true)
     }
     const handleBookmarkClick = () => {
-        if(localBookmark?.includes(word)) {
+        if(localBookmark && localBookmark.includes(word)) {
             let index = localBookmark.indexOf(word)
             localBookmark.splice(index, 1)            
             localStorage.setItem('Bookmarks', localBookmark)
