@@ -15,14 +15,14 @@ const Bookmarks = ({ show, close }) => {
     bookmarks = str.split(",");
   }
 
-  // const handleBookmarkClick = (word) => {
-  //   axios
-  //     .get(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
-  //     .then((res) => setBookmarkResult(res.data))
-  //     .catch((error) => {
-  //       console.log("Error: ", error);
-  //     });
-  // }
+  const handleBookmarkClick = (word) => {
+    axios
+      .get(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
+      .then((res) => setBookmarkResult(res.data))
+      .catch((error) => {
+        console.log("Error: ", error);
+      });
+  }
   return (
     <>
       <div
@@ -48,7 +48,7 @@ const Bookmarks = ({ show, close }) => {
               return (
                 item !== "" && (
                   <div
-                    // onClick={() => handleBookmarkClick(item)}
+                    onClick={() => handleBookmarkClick(item)}
                     key={index}
                     className="text-xl text-indigo-900"
                   >
