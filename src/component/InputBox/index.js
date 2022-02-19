@@ -15,9 +15,9 @@ const InputBox = ({ className, placeholder, value, onChange, onClick }) => {
         }}
       />
       {initValue && (
-        <div className="absolute top-2.5 md:top-6 right-5">
+        <div className="absolute top-2.5 lg:top-6 right-5">
           <i
-            className="fa fa-times text-gray-500"
+            className="fa fa-times text-indigo-700"
             onClick={() => {
               onClick();
               setInitValue("");

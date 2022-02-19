@@ -4,12 +4,12 @@ const MeaningBox = ({ result }) => {
   return (
     <>
       {result.map((item, index) => (
-        <div key={index} className="mt-12 md:mt-16 mb-14">
+        <div key={index} className="mb-14">
           {result[index]?.meanings.map((mean, key) =>
             mean.definitions.map((item, index) => (
               <div
                 key={index}
-                className="w-full md:w-4/5 md:mx-auto shadow-xl p-8 bg-gray-100 rounded-md text-indigo-700 my-4 leading-relaxed"
+                className="w-full lg:w-4/5 lg:mx-auto shadow-xl p-8 bg-gray-100 rounded-lg text-indigo-700 mb-4 leading-relaxed"
               >
                 <div className="mb-2 text-lg">
                   <span className="itallic text-gray-600 font-semibold text-lg">{`Definition(${
@@ -20,7 +20,7 @@ const MeaningBox = ({ result }) => {
                     {item.definition}
                   </span>
                 </div>
-                {item.example && (
+                {item && item.example && item.example.length && (
                   <div className="mb-2">
                     <span className="text-lg text-gray-600 font-semibold">
                       Example -{" "}
@@ -28,7 +28,7 @@ const MeaningBox = ({ result }) => {
                     <span>{item.example}</span>
                   </div>
                 )}
-                {item.synonyms.length > 0 && (
+                {item && item.synonyms && item.synonyms.length && (
                   <div className="mb-2">
                     <span className="text-lg text-gray-600 font-semibold">
                       Synonym(s) -{" "}
@@ -36,7 +36,7 @@ const MeaningBox = ({ result }) => {
                     <span>{item.synonyms.splice(0, 5).join(", ")}</span>{" "}
                   </div>
                 )}
-                {item.antonyms.length > 0 && (
+                {item && item.antonyms && item.antonyms.length && (
                   <div className="mb-2">
                     <span className="text-lg text-gray-600 font-semibold">
                       Antonym(s) -{" "}
