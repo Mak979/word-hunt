@@ -11,18 +11,14 @@ const Bookmarks = ({ show, close, bookmarkClick }) => {
   if (str) {
     bookmarks = str.split(",");
   }
-  console.log('bookmarks ===>', bookmarks);
   const handleBookmarkClick = (item) => {
     bookmarkClick(item)
     close()
   }
-  const handleDeleteBookmarkClick = word => {
-    if (bookmarks && bookmarks.includes(word)) {
-      let index = bookmarks.indexOf(word);
-      bookmarks && bookmarks.splice(index, 1);
-      localStorage.setItem("Bookmarks", bookmarks);
-    }
-  }
+  // const handleDeleteBookmarkClick = word => {
+
+  //   console.log('Delete button clicked for ===>', word);
+  // }
 
   const scrollBehaviour = bookmarks ? "absolute" : "fixed";
   return (
@@ -30,7 +26,7 @@ const Bookmarks = ({ show, close, bookmarkClick }) => {
       <div
         className={`${
           show ? "block" : "hidden"
-        } ${scrollBehaviour} lg:hidden top-0 left-0 min-h-screen overflow-hidden z-20 bg-gradient-to-b from-indigo-500 to-purple-400`}
+        } ${scrollBehaviour} lg:hidden top-0 left-0 w-full min-h-screen overflow-hidden z-20 bg-gradient-to-b from-indigo-500 to-purple-400`}
       >
         <div className="fixed top-0 left-0 z-10 p-2 w-full mb-8 bg-indigo-500 shadow-lg">
           <div className="float-left w-10 h-10 rounded-full hover:bg-gray-200">
@@ -49,7 +45,7 @@ const Bookmarks = ({ show, close, bookmarkClick }) => {
             {bookmarks.map((item, index) => {
               return (
                 item !== "" && (
-                  <div className="w-full flex justify-between border-2 border-white rounded-md p-2 cursor-pointer mr-5 mb-4">
+                  <div className="flex justify-between border-2 border-white rounded-md p-2 cursor-pointer mr-5 mb-4">
                     <div
                       onClick={() => handleBookmarkClick(item)}
                       key={index}
@@ -57,10 +53,10 @@ const Bookmarks = ({ show, close, bookmarkClick }) => {
                     >
                       {item}
                     </div>
-                    <i 
+                    {/* <i 
                       className="fas fa-trash-alt mt-1 hover:text-red-700"
                       onClick={handleDeleteBookmarkClick(item)}
-                    />
+                    /> */}
                   </div>
                 )
               );
