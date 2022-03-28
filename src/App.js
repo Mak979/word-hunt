@@ -11,9 +11,8 @@ const App = () => {
   const [result, setResult] = useState([]);
   const [isInvalid, setIsInvalid] = useState(false);
 
-  const handleChange = (event) => {
-    setInputValue(event.target.value);
-    const { value } = event.target;
+  const handleChange = (value) => {
+    setInputValue(value);
     axios
       .get(`https://api.dictionaryapi.dev/api/v2/entries/en/${value}`)
       .then((res) => setResult(res.data))
@@ -55,12 +54,12 @@ const App = () => {
           src={phoneticAudio}
         />
       </div>
-      <div className={`container mx-auto p-4 mb-2 lg:w-4/5 ${phoneticAudio || phoneticText ? "mt-36 lg:mt-56" : "mt-28 lg:mt-44"} text-xl lg:text-3xl font-bold text-white`}>
+      <div className={`container mx-auto p-4 mb-2 lg:w-4/5 ${phoneticAudio || phoneticText ? "mt-36 lg:mt-52" : "mt-28 lg:mt-44"} text-xl lg:text-3xl font-bold text-white`}>
         <InputBox
-          placeholder="Search any Word"
           className="border-2 border-gray-100 bg-gray-100 text-indigo-700 rounded-lg tracking-widest p-2 lg:p-5 pr-12 lg:pr-16 outline-none w-full"
           onChange={getData}
           onClick={() => setInputValue("")}
+          value={inputValue}
         />
       </div>
       <div className="container mx-auto p-5">
@@ -74,7 +73,7 @@ const App = () => {
           </div>
         )}
       </div>
-      <MobileFooter />
+      <MobileFooter bookmarkClick={getData} />
     </div>
   );
 };

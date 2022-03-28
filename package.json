@@ -1,6 +1,6 @@
 {
-  "name": "word-hunt",
-  "version": "0.1.0",
+  "name": "Word Quest",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
@@ -9,7 +9,7 @@
     "axios": "^0.21.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-scripts": "4.0.3",
+    "react-scripts": "^5.0.0",
     "web-vitals": "^1.1.2"
   },
   "scripts": {

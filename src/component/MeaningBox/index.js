@@ -20,7 +20,7 @@ const MeaningBox = ({ result }) => {
                     {item.definition}
                   </span>
                 </div>
-                {item && item.example && item.example.length && (
+                {item && item.example && item.example.length > 0 && (
                   <div className="mb-2">
                     <span className="text-lg text-gray-600 font-semibold">
                       Example -{" "}
@@ -28,7 +28,7 @@ const MeaningBox = ({ result }) => {
                     <span>{item.example}</span>
                   </div>
                 )}
-                {item && item.synonyms && item.synonyms.length && (
+                {item && item.synonyms && item.synonyms.length > 0 && (
                   <div className="mb-2">
                     <span className="text-lg text-gray-600 font-semibold">
                       Synonym(s) -{" "}
@@ -36,7 +36,7 @@ const MeaningBox = ({ result }) => {
                     <span>{item.synonyms.splice(0, 5).join(", ")}</span>{" "}
                   </div>
                 )}
-                {item && item.antonyms && item.antonyms.length && (
+                {item && item.antonyms && item.antonyms.length > 0 && (
                   <div className="mb-2">
                     <span className="text-lg text-gray-600 font-semibold">
                       Antonym(s) -{" "}

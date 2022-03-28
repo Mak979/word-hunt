@@ -54,7 +54,7 @@ const Header = ({ word, phonetic, src }) => {
           )}
           {src && (
             <i
-              className="fas fa-volume-up text-xl lg:text-3xl cursor-pointer"
+              className={`fas ${showAudio ? "fa-volume-slash" : "fa-volume-up"} text-xl lg:text-3xl cursor-pointer`}
               onClick={handleAudio}
             ></i>
           )}

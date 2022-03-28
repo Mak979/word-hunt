@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Bookmarks from "../Bookmarks";
 
-const MobileFooter = () => {
+const MobileFooter = ({ bookmarkClick }) => {
   const [showBookmarks, setShowBookmarks] = useState(false);
   return (
     <>
@@ -24,7 +24,11 @@ const MobileFooter = () => {
         </div>
       </div>
       {showBookmarks && (
-        <Bookmarks show={showBookmarks} close={() => setShowBookmarks(false)} />
+        <Bookmarks
+         show={showBookmarks} 
+         close={() => setShowBookmarks(false)} 
+         bookmarkClick={bookmarkClick}
+        />
       )}
     </>
   );
