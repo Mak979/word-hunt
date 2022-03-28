@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { LISTENING, SEARCH_ANY_WORD, TRY_AGAIN } from "../../utils/utilConstants";
 
 const InputBox = ({ className, onChange, onClick, value }) => {
   const [initValue, setInitValue] = useState("");
-  const [placeholder, setPlaceholder] = useState("Search any word...");
+  const [placeholder, setPlaceholder] = useState(SEARCH_ANY_WORD);
   useEffect(() => {
     if (value) {
       setInitValue(value);
@@ -22,17 +23,17 @@ const InputBox = ({ className, onChange, onClick, value }) => {
 
     recognition.start();
     recognition.onstart = () => {
-      setPlaceholder("Listening now...");
+      setPlaceholder(LISTENING);
     }
     recognition.onerror = () => {
-      setPlaceholder("Please try again");
+      setPlaceholder(TRY_AGAIN);
     }
     recognition.onend = () => {
       if (finalTranscript !== "") {
         setInitValue(finalTranscript);
         onChange(finalTranscript)
       } else {
-        setPlaceholder("Search any word...");
+        setPlaceholder(SEARCH_ANY_WORD);
       }
     }
     recognition.onresult = event => {
@@ -62,7 +63,7 @@ const InputBox = ({ className, onChange, onClick, value }) => {
             className="fa fa-times text-indigo-700"
             onClick={() => {
               onClick();
-              setPlaceholder("Search any word...")
+              setPlaceholder(SEARCH_ANY_WORD)
               setInitValue("");
             }}
           />

@@ -1,4 +1,5 @@
 import React from "react";
+import { ANTONYMS, EXAMPLE, SYNONYMS } from "../../utils/utilConstants";
 
 const MeaningBox = ({ result }) => {
   return (
@@ -23,7 +24,7 @@ const MeaningBox = ({ result }) => {
                 {item && item.example && item.example.length > 0 && (
                   <div className="mb-2">
                     <span className="text-lg text-gray-600 font-semibold">
-                      Example -{" "}
+                      {EXAMPLE}
                     </span>
                     <span>{item.example}</span>
                   </div>
@@ -31,7 +32,7 @@ const MeaningBox = ({ result }) => {
                 {item && item.synonyms && item.synonyms.length > 0 && (
                   <div className="mb-2">
                     <span className="text-lg text-gray-600 font-semibold">
-                      Synonym(s) -{" "}
+                      {SYNONYMS}
                     </span>
                     <span>{item.synonyms.splice(0, 5).join(", ")}</span>{" "}
                   </div>
@@ -39,7 +40,7 @@ const MeaningBox = ({ result }) => {
                 {item && item.antonyms && item.antonyms.length > 0 && (
                   <div className="mb-2">
                     <span className="text-lg text-gray-600 font-semibold">
-                      Antonym(s) -{" "}
+                      {ANTONYMS}
                     </span>
                     <span>{item.antonyms.join(", ")} </span>
                   </div>

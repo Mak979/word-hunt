@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./App.css";
-import MobileFooter from "./component/Footer-Mobile";
-import Header from "./component/Header";
-import InputBox from "./component/InputBox";
-import MeaningBox from "./component/MeaningBox";
+import { API_PATH, DEFAULT_NEW_SEARCH_MESSAGE, NO_RESULT_FOUND_MESSAGE, WORD_QUEST } from "./utils/utilConstants";
+import InputBox from "./components/inputBox";
+import MobileFooter from "./components/mobileFooter";
+import Header from "./components/appHeader";
+import MeaningBox from "./components/meaningBox";
 
 const App = () => {
   const [inputValue, setInputValue] = useState("");
@@ -14,7 +15,7 @@ const App = () => {
   const handleChange = (value) => {
     setInputValue(value);
     axios
-      .get(`https://api.dictionaryapi.dev/api/v2/entries/en/${value}`)
+      .get(`${API_PATH}/${value}`)
       .then((res) => setResult(res.data))
       .catch((error) => {
         console.log("Error: ", error);
@@ -49,7 +50,7 @@ const App = () => {
     <div className="w-full min-h-screen h-auto bg-gradient-to-b from-indigo-500 to-purple-400  font-sans text-gray-200">
       <div className="fixed w-full top-0 pt-8 pb-6 bg-indigo-500  z-20 shadow-2xl">
         <Header
-          word={inputValue === "" ? "word quest" : inputValue}
+          word={inputValue === "" ? WORD_QUEST : inputValue}
           phonetic={inputValue === "" ? "" : phoneticText}
           src={phoneticAudio}
         />
@@ -68,8 +69,8 @@ const App = () => {
         ) : (
           <div className="relative top-32 w-full text-center text-3xl text-gray-200 lg:text-5xl p-4">
             {isInvalid
-              ? "Sorry pal, we couldn't find definitions for the word you were looking for."
-              : "Search the Word and see the magic happen!"}
+              ? NO_RESULT_FOUND_MESSAGE
+              : DEFAULT_NEW_SEARCH_MESSAGE}
           </div>
         )}
       </div>

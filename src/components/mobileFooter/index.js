@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Bookmarks from "../Bookmarks";
+import Bookmarks from "../bookmarks";
 
 const MobileFooter = ({ bookmarkClick }) => {
   const [showBookmarks, setShowBookmarks] = useState(false);
