@@ -15,18 +15,12 @@ const Bookmarks = ({ show, close, bookmarkClick }) => {
     bookmarkClick(item)
     close()
   }
-  // const handleDeleteBookmarkClick = word => {
-
-  //   console.log('Delete button clicked for ===>', word);
-  // }
-
-  const scrollBehaviour = bookmarks ? "absolute" : "fixed";
   return (
     <>
       <div
         className={`${
           show ? "block" : "hidden"
-        } ${scrollBehaviour} lg:hidden top-0 left-0 w-full min-h-screen overflow-hidden z-20 bg-gradient-to-b from-indigo-500 to-purple-400`}
+        } fixed lg:hidden top-0 left-0 w-full min-h-screen overflow-hidden z-20 bg-gradient-to-b from-indigo-500 to-purple-400`}
       >
         <div className="fixed top-0 left-0 z-10 p-2 w-full mb-8 bg-indigo-500 shadow-lg">
           <div className="float-left w-10 h-10 rounded-full hover:bg-gray-200">
